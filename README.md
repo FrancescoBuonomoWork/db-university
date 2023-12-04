@@ -27,6 +27,7 @@ laurea (286)
 
 
 - SELECT * FROM `exams` WHERE `date` = '2020-06-20' AND `hour` BETWEEN '14:%' AND '24:%';
+- SELECT * FROM `exams` WHERE `date` = '2020-06-20' AND HOUR(`hour`) >= 14;
 
 
 6. Selezionare tutti i corsi di laurea magistrale (38)
