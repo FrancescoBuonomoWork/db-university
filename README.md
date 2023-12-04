@@ -11,8 +11,8 @@
 
 
 3. Selezionare tutti gli studenti che hanno più di 30 anni
-- SELECT YEAR(`DATE_OF_BIRTH`),YEAR(CURDATE()),YEAR(CURDATE()) - YEAR(`DATE_OF_BIRTH`) AS `eta` FROM `students`;
-- SELECT YEAR(`DATE_OF_BIRTH`),YEAR(CURDATE()) FROM `students` WHERE YEAR(CURDATE()) - YEAR(`DATE_OF_BIRTH`) > 30;
+<!-- - SELECT YEAR(`DATE_OF_BIRTH`),YEAR(CURDATE()),YEAR(CURDATE()) - YEAR(`DATE_OF_BIRTH`) AS `eta` FROM `students`;
+- SELECT YEAR(`DATE_OF_BIRTH`),YEAR(CURDATE()) FROM `students` WHERE YEAR(CURDATE()) - YEAR(`DATE_OF_BIRTH`) > 30; -->
 - SELECT * FROM `students` WHERE TIMESTAMPDIFF(YEAR, `date_of_birth`, CURDATE()) > 30;
 
 
