@@ -1,3 +1,5 @@
+<!-- PS  lascio dei commenti dove sono i ragionamenti che ho fatto prima di arrivare alla soluzione finale 
+ -->
 1. Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia
 
 - SELECT `degrees`.`name`, `students`. * FROM `degrees` INNER JOIN `students` ON `degrees`.`id` = `students`.`degree_id` WHERE `degrees`.`name` = 'Corso di Laurea in Economia';
@@ -17,6 +19,18 @@ Neuroscienze
 
 4. Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e
 nome
+
+<!-- - SELECT * FROM `students`
+INNER JOIN `degrees` ON `students`.`degree_id`= `degrees`.`id`
+INNER JOIN `departments`on `departments`.`id` = `degrees`.`department_id`;
+
+- SELECT `students`.*,`degrees`.`name`,`departments`.`name` FROM `students` INNER JOIN `degrees` ON `students`.`degree_id`= `degrees`.`id` INNER JOIN `departments`on `departments`.`id` = `degrees`.`department_id`; -->
+
+<!-- - SELECT CONCAT(`students`.`surname`, ' ',`students`.`name`),`degrees`.`name`,`departments`.`name` FROM `students` INNER JOIN `degrees` ON `students`.`degree_id`= `degrees`.`id` INNER JOIN `departments`on `departments`.`id` = `degrees`.`department_id`; -->
+
+- SELECT CONCAT(`students`.`surname`, ' ',`students`.`name`) AS `full_name`,`degrees`.`name`,`departments`.`name` FROM `students` INNER JOIN `degrees` ON `students`.`degree_id`= `degrees`.`id` INNER JOIN `departments`on `departments`.`id` = `degrees`.`department_id` ORDER BY `full_name` ASC;
+
+
 5. Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti
 6. Selezionare tutti i docenti che insegnano nel Dipartimento di
 Matematica (54)
