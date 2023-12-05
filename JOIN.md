@@ -44,3 +44,63 @@ Matematica (54)
 
 7. BONUS: Selezionare per ogni studente il numero di tentativi sostenuti per ogni esame, stampando anche il voto massimo. Successivamente,
 filtrare i tentativi con voto minimo 18.
+
+<!-- INNER JOIN `students`ON `students`.`id`= `exam_student`.`student_id`; -->
+SELECT *
+FROM (
+    SELECT
+    	`stu`.`id` as studId,
+    	`stu`.`name` as studName,
+    	`stu`.`surname` as studSurname,
+    	`cou`.`id` as courseId,
+    	`cou`.`name` as corsoName,
+    	COUNT(*) as numTentativi,
+    	MAX(`ex_stu`.`vote`) as votoMax
+FROM `students` as `stu`
+  JOIN `exam_student` as `ex_stu`
+  	ON `stu`.`id` = `ex_stu`.`student_id`
+  JOIN `exams` as `ex`
+    ON `ex_stu`.`exam_id` = `ex`.`id`
+  JOIN `courses` as `cou`
+  	ON `ex`.`course_id` = `cou`.`id`
+GROUP BY `stu`.`id`, `stu`.`name`, `stu`.`surname`, `cou`.`id`, `cou`.`name`) as tmp
+WHERE `tmp`.`votoMax` >= 18;
+
+SELECT *
+FROM (
+    SELECT
+    	`stu`.`id` as studId,
+    	`stu`.`name` as studName,
+    	`stu`.`surname` as studSurname,
+    	`cou`.`id` as courseId,
+    	`cou`.`name` as corsoName,
+    	COUNT(*) as numTentativi,
+    	MAX(`ex_stu`.`vote`) as votoMax
+    FROM `students` as `stu`
+        JOIN `exam_student` as `ex_stu`
+  	        ON `stu`.`id` = `ex_stu`.`student_id`
+        JOIN `exams` as `ex`
+            ON `ex_stu`.`exam_id` = `ex`.`id`
+        JOIN `courses` as `cou`
+  	        ON `ex`.`course_id` = `cou`.`id`
+    GROUP BY `stu`.`id`, `stu`.`name`, `stu`.`surname`, `cou`.`id`, `cou`.`name`
+    ) as tmp
+WHERE `tmp`.`votoMax` >= 18;
+
+    SELECT
+    	`stu`.`id` as studId,
+    	`stu`.`name` as studName,
+    	`stu`.`surname` as studSurname,
+    	`cou`.`id` as courseId,
+    	`cou`.`name` as corsoName,
+    	COUNT(*) as numTentativi,
+    	MAX(`ex_stu`.`vote`) as votoMax
+    FROM `students` as `stu`
+        JOIN `exam_student` as `ex_stu`
+  	        ON `stu`.`id` = `ex_stu`.`student_id`
+        JOIN `exams` as `ex`
+            ON `ex_stu`.`exam_id` = `ex`.`id`
+        JOIN `courses` as `cou`
+  	        ON `ex`.`course_id` = `cou`.`id`
+    GROUP BY `stu`.`id`, `stu`.`name`, `stu`.`surname`, `cou`.`id`, `cou`.`name`
+    HAVING `votoMax` >= 18;
